@@ -34,10 +34,10 @@ begin
   Writeln;
 end;
 
-const
-  MainOctave: array[0..11] of Smallint = (
-//  A    A+   B    C    C+   D    D+   E    F    F+   G    G+
-    440, 466, 493, 523, 554, 587, 622, 659, 698, 739, 783, 830);
+//const
+//  MainOctave: array[0..11] of Smallint = (
+////  A    A+   B    C    C+   D    D+   E    F    F+   G    G+
+//    440, 466, 493, 523, 554, 587, 622, 659, 698, 739, 783, 830);
 
 procedure DemoSound;
 begin
@@ -54,6 +54,9 @@ begin
     Writeln;
 
     // "Frère Jacques", "Are You Sleeping", "Vader Jacob", etc.
+
+//  A    A+   B    C    C+   D    D+   E    F    F+   G    G+
+//  440, 466, 493, 523, 554, 587, 622, 659, 698, 739, 783, 830);
 
     Delay(400);
 
