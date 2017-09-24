@@ -43,76 +43,100 @@ procedure DemoSound;
 begin
   Caption('Sound, Delay, NoSound demo');
 
-  Writeln('You should be hearing a well-known tune. If not, either your system');
-  Writeln('does not support Sound as implemented in this unit, or Sound does');
-  Writeln('not support your system, sorry.');
+  Writeln('This part of the demo will play a simple tune.');
   Writeln;
+  Write('Press Esc key to skip, any other key to play...'#13);
+  if Readkey <> #27 then
+  begin
+    Writeln('You should be hearing a well-known tune. If not, either your system');
+    Writeln('does not support Sound as implemented in this unit, or Sound does');
+    Writeln('not support your system, sorry.');
+    Writeln;
 
-  // "Frère Jacques", "Are You Sleeping", etc.
+    // "Frère Jacques", "Are You Sleeping", "Vader Jacob", etc.
 
-  Sound(523); Delay(400);
-  Sound(587); Delay(400);
-  Sound(659); Delay(400);
-  Sound(523); Delay(200);
-  NoSound; Delay(200);
+    Delay(400);
 
-  Sound(523); Delay(400);
-  Sound(587); Delay(400);
-  Sound(659); Delay(400);
-  Sound(523); Delay(200);
-  NoSound; Delay(200);
+    Sound(523); Delay(400);
+    Sound(587); Delay(400);
+    Sound(659); Delay(400);
+    Sound(523); Delay(200);
+    NoSound; Delay(200);
 
-  Sound(659); Delay(400);
-  Sound(698); Delay(400);
-  Sound(783); Delay(600);
-  NoSound; Delay(200);
+    Sound(523); Delay(400);
+    Sound(587); Delay(400);
+    Sound(659); Delay(400);
+    Sound(523); Delay(200);
+    NoSound; Delay(200);
 
-  Sound(659); Delay(400);
-  Sound(698); Delay(400);
-  Sound(783); Delay(600);
-  NoSound; Delay(200);
+    Sound(659); Delay(400);
+    Sound(698); Delay(400);
+    Sound(783); Delay(600);
+    NoSound; Delay(200);
 
-  Sound(783); Delay(200);
-  Sound(880); Delay(200);
-  Sound(783); Delay(200);
-  Sound(698); Delay(200);
-  Sound(659); Delay(400);
-  Sound(523); Delay(200);
-  NoSound; Delay(200);
+    Sound(659); Delay(400);
+    Sound(698); Delay(400);
+    Sound(783); Delay(600);
+    NoSound; Delay(200);
 
-  Sound(783); Delay(200);
-  Sound(880); Delay(200);
-  Sound(783); Delay(200);
-  Sound(698); Delay(200);
-  Sound(659); Delay(400);
-  Sound(523); Delay(200);
-  NoSound; Delay(200);
+    Sound(783); Delay(200);
+    Sound(880); Delay(200);
+    Sound(783); Delay(200);
+    Sound(698); Delay(200);
+    Sound(659); Delay(400);
+    Sound(523); Delay(200);
+    NoSound; Delay(200);
 
-  Sound(523); Delay(400);
-  Sound(391); Delay(400);
-  Sound(523); Delay(600);
-  NoSound; Delay(200);
+    Sound(783); Delay(200);
+    Sound(880); Delay(200);
+    Sound(783); Delay(200);
+    Sound(698); Delay(200);
+    Sound(659); Delay(400);
+    Sound(523); Delay(200);
+    NoSound; Delay(200);
 
-  Sound(523); Delay(400);
-  Sound(391); Delay(400);
-  Sound(523); Delay(600);
-  NoSound; Delay(200);
+    Sound(523); Delay(400);
+    Sound(391); Delay(400);
+    Sound(523); Delay(600);
+    NoSound; Delay(200);
 
-  Pause;
+    Sound(523); Delay(400);
+    Sound(391); Delay(400);
+    Sound(523); Delay(600);
+    NoSound; Delay(200);
+
+    Pause;
+  end;
   ClrScr;
 end;
 
 procedure SetupWindow;
+const
+  BGString = 'Background ';
+  WString = 'Window';
+var
+  I: Integer;
+  J: Integer;
 begin
-  TextBackground(LightGray);
-  TextColor(White);
+  TextBackground(Blue);
+  TextColor(LightBlue);
   ClrScr;
   Caption('Windowing demos');
+  for I := 1 to ScreenHeight do
+  begin
+    GotoXY(1, I);
+    for J := 1 to ScreenWidth div Length(BGString) do
+      Write(BGString);
+    if I < ScreenHeight then
+      Write(BGString);
+  end;
   Window(WinMargin, WinMargin,
          ScreenWidth - WinMargin + 1, ScreenHeight - WinMargin + 1);
   TextBackground(DarkGray);
   TextColor(White);
   ClrScr;
+  GotoXY((ScreenWidth - Length(WString)) div 2 - WinMargin, 1);
+  Write(WString);
   TextBackground(Black);
   Window(WinMargin + 1, WinMargin + 1,
          ScreenWidth - WinMargin, ScreenHeight - WinMargin);
@@ -242,6 +266,20 @@ begin
   ClrScr;
   Caption('Write and Writeln with Window set');
   Writeln('This is a very very long string to demonstrate wrapping at ' +
+          'the edge of the text window. ' +
+          'This is a very very long string to demonstrate wrapping at ' +
+          'the edge of the text window. ' +
+          'This is a very very long string to demonstrate wrapping at ' +
+          'the edge of the text window. ' +
+          'This is a very very long string to demonstrate wrapping at ' +
+          'the edge of the text window. ' +
+          'This is a very very long string to demonstrate wrapping at ' +
+          'the edge of the text window. ' +
+          'This is a very very long string to demonstrate wrapping at ' +
+          'the edge of the text window. ' +
+          'This is a very very long string to demonstrate wrapping at ' +
+          'the edge of the text window. ' +
+          'This is a very very long string to demonstrate wrapping at ' +
           'the edge of the text window.');
   Writeln('Following are a few strings do demonstrate scrolling.');
   Pause;
