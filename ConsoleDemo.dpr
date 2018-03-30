@@ -53,10 +53,11 @@ begin
     Writeln('not support your system, sorry.');
     Writeln;
 
-    // "Frère Jacques", "Are You Sleeping", "Vader Jacob", etc.
+    //  A    A+   B    C    C+   D    D+   E    F    F+   G    G+
+    //  440, 466, 493, 523, 554, 587, 622, 659, 698, 739, 783, 830);
 
-//  A    A+   B    C    C+   D    D+   E    F    F+   G    G+
-//  440, 466, 493, 523, 554, 587, 622, 659, 698, 739, 783, 830);
+    // "Frère Jacques", "Are You Sleeping", "Vader Jacob", etc.
+    // Note: I am not a musician. This is probably far from the original.
 
     Delay(400);
 
