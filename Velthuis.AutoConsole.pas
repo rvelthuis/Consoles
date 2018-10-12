@@ -1,4 +1,4 @@
-unit Velthuis.AutoConsole;
+unit Velthuis.AutoConsole platform;
 
 interface
 
@@ -14,16 +14,16 @@ procedure WaitForInput;
 var
   InputRec: TInputRecord;
   NumRead: Cardinal;
-  OldKeyMode: DWORD;
+  OldMode: DWORD;
   StdIn: THandle;
 begin
   StdIn := GetStdHandle(STD_INPUT_HANDLE);
-  GetConsoleMode(StdIn, OldKeyMode);
+  GetConsoleMode(StdIn, OldMode);
   SetConsoleMode(StdIn, 0);
   repeat
     ReadConsoleInput(StdIn, InputRec, 1, NumRead);
   until (InputRec.EventType and KEY_EVENT <> 0) and InputRec.Event.KeyEvent.bKeyDown;
-  SetConsoleMode(StdIn, OldKeyMode);
+  SetConsoleMode(StdIn, OldMode);
 end;
 
 function StartedFromConsole: Boolean;
@@ -32,14 +32,20 @@ var
   ProcessId: DWORD;
 begin
   ConsoleHwnd := GetConsoleWindow;
-  GetWindowThreadProcessId(ConsoleHWnd, ProcessId);
-  Result := GetCurrentProcessId <> ProcessId;
+  if ConsoleHWnd <> 0 then
+  begin
+    GetWindowThreadProcessId(ConsoleHWnd, ProcessId);
+    Result := GetCurrentProcessId <> ProcessId;
+  end
+  else
+    Result := False;
 end;
 
 procedure Pause;
 begin
-  if IsConsole and not StartedFromConsole  then
+  if IsConsole and not StartedFromConsole then
   begin
+    Writeln;
     Write('Press any key... ');
     WaitForInput;
   end;
@@ -51,3 +57,4 @@ finalization
   Pause;
 
 end.
+
