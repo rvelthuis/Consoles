@@ -5,4 +5,5 @@
 *.rsm
 *.stat
 *.dcu
+*.~*
 __history/**
